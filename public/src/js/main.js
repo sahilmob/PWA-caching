@@ -1,13 +1,23 @@
+var box = document.querySelector(".box");
+var button = document.querySelector("button");
 
-var box = document.querySelector('.box');
-var button = document.querySelector('button');
+if ("serviceWorker" in navigator) {
+	navigator.serviceWorker
+		.register("/sw.js")
+		.then(function() {
+			console.log("Service worker registered");
+		})
+		.catch(function(err) {
+			console.log("Error registering service worker", err);
+		});
+}
 
-button.addEventListener('click', function(event) {
-  if (box.classList.contains('visible')) {
-    box.classList.remove('visible');
-  } else {
-    box.classList.add('visible');
-  }
+button.addEventListener("click", function(event) {
+	if (box.classList.contains("visible")) {
+		box.classList.remove("visible");
+	} else {
+		box.classList.add("visible");
+	}
 });
 
 // 1) Register a Service Worker
